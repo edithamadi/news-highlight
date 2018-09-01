@@ -1,0 +1,13 @@
+{% macro displayNewarticleList(newsarticle_list)%}
+{% for newarticle in newarticle_list %}
+<div class="cardarticles">
+    <a href="{{newsource.url}}" target="_blank">
+        <h5 class="article_title">{{newsource.name}}</h5>
+    </a>
+
+    p>{{newsource.description}}</p>
+    <a href="/articles/{{newsource.id}}">View Articles</a>
+
+</div>
+{% endfor %}
+{% endmacro %}
