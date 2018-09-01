@@ -2,26 +2,28 @@ class Config:
     '''
     General configuration parent class
     '''
+
+    ARTICLE_API_BASE_URL = 'https://newsapi.org/v2/{}?sources=bbc-news&apiKey={}'
+    pass
+        
+    class ProdConfig(Config):
+
+        '''
+        Production  configuration child class
+
+        Args:
+            Config: The parent configuration class with General configuration settings
+        '''
     pass
 
 
+    class DevConfig(Config):
+        '''
+        Development  configuration child class
 
-class ProdConfig(Config):
-    '''
-    Production  configuration child class
+        Args:
+            Config: The parent configuration class with General configuration settings
+        '''
 
-    Args:
-        Config: The parent configuration class with General configuration settings
-    '''
-    pass
+        DEBUG = True
 
-
-class DevConfig(Config):
-    '''
-    Development  configuration child class
-
-    Args:
-        Config: The parent configuration class with General configuration settings
-    '''
-
-    DEBUG = True
