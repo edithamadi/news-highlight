@@ -28,3 +28,25 @@ def get_newarticle(category):
             newarticle_results = process_results(newarticle_results_list)
 
     return newarticle_results
+
+def process_results(newarticle_list):
+    '''
+    Function  that processes the new source result and transform them to a list of Objects
+    Args:
+        newarticle_list: A list of dictionaries that contain news source details
+    Returns :
+        newarticle_results: A list of newarticle objects
+    '''
+    newarticle_results = []
+    for news_item in newarticle_list:
+        id = news_item.get('id')
+        name = news_item.get('name')
+        description = news_item.get('description')
+        url = news_item.get('url')
+        category = news_item.get('category')
+        country = news_item.get('country')
+
+        newarticle_object = Article(id,name,description,url,category,country)
+        newarticle_results.append(newarticle_object)
+
+    return newarticle_results
