@@ -1,12 +1,12 @@
-{% macro displayNewarticleList(newsarticle_list)%}
+{% macro displayNewarticleList(newarticle_list)%}
 {% for newarticle in newarticle_list %}
 <div class="cardarticles">
-    <a href="{{newsource.url}}" target="_blank">
-        <h5 class="article_title">{{newsource.name}}</h5>
+    <a href="{{newarticle.url}}" target="_blank">
+        <h5 class="article_title">{{newarticle.name}}</h5>
     </a>
-
-    p>{{newsource.description}}</p>
-    <a href="/articles/{{newsource.id}}">View Articles</a>
+    <h5>{{newarticle.name}}</h5>
+    <p>{{newarticle.description}}</p>
+    <a href="/articles/{{newarticle.id}}">View Articles</a>
 
 </div>
 {% endfor %}
