@@ -23,8 +23,8 @@ def get_newarticle(category):
 
         newarticle_results = None
 
-        if get_newarticle_response['articles']:
-            newarticle_results_list = get_newarticle_response['articles']
+        if get_newarticle_response['sources']:
+            newarticle_results_list = get_newarticle_response['sources']
             newarticle_results = process_results(newarticle_results_list)
 
     return newarticle_results
@@ -44,9 +44,9 @@ def process_results(newarticle_list):
         description = news_item.get('description')
         url = news_item.get('url')
         category = news_item.get('category')
-        country = news_item.get('country')
+        publishedAt = news_item.get('publishedAt')
 
-        newarticle_object = Article(id,name,description,url,category,country)
+        newarticle_object = Article(id,name,description,url,category,publishedAt)
         newarticle_results.append(newarticle_object)
 
     return newarticle_results
