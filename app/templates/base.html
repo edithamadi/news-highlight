@@ -1,20 +1,34 @@
 <!-- template inheritance -->
 {% extends 'bootstrap/base.html'%}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to the best Movie Review website </title>
-        {% endif %}
-    </head>
-    <body>
-        <!-- Content block -->
 
-        {% block content %}
+<!-- Navbar block  --> 
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
 
-        {% endblock%}
-    </body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Content block
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static',filename='js/navbar.js')}}"></script>
+<script src="{{url_for('static',filename='js/search.js')}}"></script>
+{% endblock %} -->
