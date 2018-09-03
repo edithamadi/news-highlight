@@ -1,1 +1,33 @@
-<h1> News Highlight {{ id }} </h1>
+{% extends 'base.html' %}
+
+{% block content%}
+
+<!-- Landing Page -->
+
+                <div class="col-md-7 title">
+                    <p>BRINGING YOU <br> THE BEST NEWS STORIES</p>
+                </div>
+                <div class="col-md-5 pagetitle">
+                    <p>THE NEWS HIGHLIGHTS <br><strong>SOURCE {{name}}</strong></p>
+                </div>
+            
+<!-- Body Section -->
+
+        {% for article in articles%}
+            <div class="card article">
+                <a href="{{article.url}}" target="_blank">
+                    <img class="card-img" src="{{article.urlToImage}}" alt="Image of {{article.title}}">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">{{article.title}}</h4>
+                    <p class="details">- {{article.author}}</p>
+                    <p class="details">Posted on {{article.publishedAt}}</p>
+                    <hr>
+                    <p>{{article.description|truncate(200)}}...
+                        <a href="{{article.url}}" target="_blank">View Article on the site</a>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+
+{% endblock %}
