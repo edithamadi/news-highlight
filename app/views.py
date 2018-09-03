@@ -1,6 +1,6 @@
 from flask import render_template#import render template function from flask
 from app import app#import app instance from app folder
-from .request import get_newarticles
+from .request import get_newarticle
 # Views
 @app.route('/')
 def index():
@@ -14,12 +14,7 @@ def index():
     science_newarticle = get_newarticle('science')
 
     title = 'Home | New Highlights'
-
-    search_article = request.args.get('article_query')
-    if search_article:
-        return redirect(url_for('.search',article_name=search_article))
-    else:
-        return render_template('index.html', title=title, general = general_newarticle, technology = technology_newarticle, entertainment = entertainment_newarticle, sports = sports_newarticle, business= business_newarticle, science = science_newarticle)
+    return render_template('index.html', title=title, general = general_newarticle, technology = technology_newarticle, entertainment = entertainment_newarticle, sports = sports_newarticle, business= business_newarticle, science = science_newarticle)
 
 
 @app.route('/article/<int:article_id>')#dynamic route
