@@ -1,22 +1,52 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to The Home of the best news stories </title>
-        {% endif %}
-    </head>
-    <body>
+{% import 'macros.html' as macro %}
 
-        <!-- Popular movie section  -->
-        <h3> general news</h3>
-         <ul>
-            {% for general_news %}
-                <li>{{ general.name}}</li>
-            {% endfor %}
+<!-- Content block -->
+{% block content %}
+  
+        <p> Welcome to The Home of the best news stories </p>
+        <p id ="fadeIn"><span class="first">YOUR ONE STOP TO</span> <br> <strong> ALL NEWS SOURCES</strong></p>
+<!-- body      -->
+<div>
+<h4 class="source_title">General News</h4>
+<ul>
+    {{macro.displayNewarticleList(general)}}
+</ul>
+</div>
+
+<div>
+    <h4 class="source_title">Business News</h4>
+    <ul>
+        {{macro.displayNewarticleList(business)}}
+    </ul>
+    </div>
+
+<div>
+<h4 class="source_title">Technology News</h4>
+<ul>
+    {{macro.displayNewarticleList(technology)}}
+</ul>
+</div>
+
+<div>
+    <h4 class="source_title">Sports News</h4>
+    <ul>
+        {{macro.displayNewarticleList(sports)}}
+    </ul>
+    </div>
+
+    <div>
+        <h4 class="source_title">Entertainment News</h4>
+        <ul>
+            {{macro.displayNewarticleList(entertainment)}}
         </ul>
+        </div>
+        
+        <div>
+            <h4 class="source_title">Science News</h4>
+            <ul>
+                {{macro.displayNewarticleList(science)}}
+            </ul>
+            </div>
 
-    </body>
-</html>
+{% endblock %}
+
