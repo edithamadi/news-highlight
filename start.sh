@@ -1,0 +1,1 @@
+ARTICLE_API_KEY = 'fff10cad9b7b4cfb8fcd8986e0020a02'
