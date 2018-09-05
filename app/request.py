@@ -1,16 +1,40 @@
-from app import app
 import urllib.request,json
 from datetime import datetime
-from .models import article
+from .models import Article
 from .models import Source
 
 Article = article.Article
 
-# Getting api key
-api_key = app.config['ARTICLE_API_KEY']
+# # Getting api key
+# api_key = app.config['ARTICLE_API_KEY']
+# # Getting the article base url
+# base_url = app.config["ARTICLE_API_BASE_URL"]
 
-# Getting the article base url
-base_url = app.config["ARTICLE_API_BASE_URL"]
+
+# Getting api key
+api_key = None
+#Getting the movie base url
+base_url = None
+#Getting the source base url
+source_url = None
+#Getting the topheadline articles
+topheadline_url = None
+#Getting all articles
+everything_url = None
+#Search url
+search_url = None
+
+
+def configure_request(app):
+    global api_key,base_url,source_url,topheadline_url,everything_url,search_url
+    api_key = app.config['NEWS_API_KEY']
+    base_url = app.config["ARTICLE_API_BASE_URL"]
+    source_url = app.config["EVERYTHING_SOURCE_BASE_URL"]
+    topheadline_url = app.config["TOP_HEADLINES_BASE_URL"]
+    everything_url =app.config["EVERYTHING_BASE_URL"]
+    search_url = app.config["SEARCH_API_BASE_URL"]
+
+
 
 def get_newarticle(category):
     '''
@@ -52,3 +76,48 @@ def process_results(newarticle_list):
         newarticle_results.append(newarticle_object)
 
     return newarticle_results
+
+def get_sources(source_id,limit):
+    '''
+    Function that gets the json response to our url request
+    '''
+    get_sources_url = source_url.format(source_id,limit,api_key)
+    print(get_sources_url)
+
+    with urllib.request.urlopen(get_sources_url) as url:
+        get_sources_data = url.read()
+        get_sources_response = json.loads(get_sources_data)
+
+        sources_results = None
+
+        if get_sources_response['articles']:
+            sources_results_list = get_sources_response['articles']
+            sources_results = process_sources(sources_results_list)
+
+    return sources_results
+
+
+def process_sources(articles_list):
+    '''
+    Function  that processes the new articles and transform them to a list of Objects
+    Args:
+        sources_list: A list of dictionaries that contain article details
+    Returns :
+        sources_results: A list of article objects
+    '''
+    sources_results = []
+    for source_item in sources_list:
+        author = source_item.get('author')
+        title = source_item.get('title')
+        description = source_item.get('description')
+        url = source_item.get('url')
+        urlToImage = source_item.get('urlToImage')
+        publishedAt = source_item.get('publishedAt')
+
+        publishedAt = datetime(year=int(publishedAt[0:4]),month=int(publishedAt[5:7]),day=int(publishedAt[8:10]),hour=int(publishedAt[11:13]),minute=int(publishedAt[14:16]))
+
+        if urlToImage:
+            sources_object = Source(author, title, description, url, urlToImage, publishedAt)
+            sources_results.append(sources_object)
+
+    return sources_results
