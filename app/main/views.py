@@ -26,18 +26,17 @@ else:
 
 
 @main.route('/article/<int:article_id>')#dynamic route
-def article(article_id):
+def source(article_id):
     
         return render_template('article.html',id = article_id)   
 
-
 #Getting articles
 
-    article_source = get_article(source_id,per_page)
+    article_source = get_sources(source_id,per_page)
     title = f'{source_id} | All Articles'
     search_article = request.args.get('article_query')
     if search_article:
-        return redirect(url_for('.search',article_name=search_article))
+        return redirect(url_for('.search',source_name=search_article))
     else:
         return render_template('article.html', title=title, name = source_id, article = article_source)
 
