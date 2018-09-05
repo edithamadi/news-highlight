@@ -121,3 +121,58 @@ def process_sources(articles_list):
             sources_results.append(sources_object)
 
     return sources_results
+
+def get_topheadlines(limit):
+    '''
+    Function that gets the json response to our url request
+    '''
+    get_topheadlines_url = topheadline_url.format(limit,api_key)
+    print(get_topheadlines_url)
+
+    with urllib.request.urlopen(get_topheadlines_url) as url:
+        get_topheadlines_data = url.read()
+        get_topheadlines_response = json.loads(get_topheadlines_data)
+
+        topheadlines_results = None
+
+        if get_topheadlines_response ['articles']:
+            topheadlines_results_list = get_topheadlines_response['articles']
+            topheadlines_results = process_sources(topheadlines_results_list)
+
+    return topheadlines_results
+
+
+def get_everything(limit):
+    '''
+    Function that gets the json response to our url request
+    '''
+    get_everything_url = everything_url.format(limit,api_key)
+    print(get_everything_url)
+
+    with urllib.request.urlopen(get_everything_url) as url:
+        get_everything_data = url.read()
+        get_everything_response = json.loads(get_everything_data)
+
+        everything_results = None
+
+        if get_everything_response['articles']:
+            everything_results_list = get_everything_response['articles']
+            everything_results = process_sources(everything_results_list)
+
+    return everything_results
+
+
+def search_article(article_name):
+    get_search_url = search_url.format(article_name,api_key)
+
+    with urllib.request.urlopen(get_search_url) as url:
+        search_article_data = url.read()
+        search_article_response = json.loads(search_article_data)
+
+        search_article_results = None
+
+        if search_article_response['articles']:
+            search_article_list = search_article_response['articles']
+            search_article_results = process_sources(search_article_list)
+
+    return search_article_results
