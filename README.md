@@ -12,7 +12,7 @@ This Application enables users to view news highlights from popular news outlets
 | ------------------- | ----------------------------- | ----------------------------- |
 | View news sources | Click on the `News Highlight` button in Navbar | Returns To News Sources page |
 | View articles from sources | Click on the `View Article ..` button | Takes user to page with articles from source |
-| View full article from a source | Click on the `View full article ..` button | Takes user to original source of article |
+| View full article from a source | Click on the `Read More ..` button | Takes user to original source of article |
 
 
 ## Prerequiites
@@ -24,10 +24,6 @@ This Application enables users to view news highlights from popular news outlets
     - Install python 3.6
     - Run chmod a+x start.py
     - Run ./start.py
-
-<!-- ## Link to deployed site
-https://newshighlight.herokuapp.com/ -->
-
 
 ## Known bugs
 No known errors if found drop a message on my profile
