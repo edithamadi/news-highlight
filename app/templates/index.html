@@ -1,53 +1,39 @@
 {% extends 'base.html'%}
-{% import 'macros.html' as macro %}
 
 <!-- Content block -->
 {% block content %}
-  
-        <p> Welcome to The Home of the best news stories </p>
-        <p id ="fadeIn"><span class="first">YOUR ONE STOP TO</span> <br> <strong> ALL NEWS SOURCES</strong></p>
-<!-- body      -->
-<div>
-<h4 class="source_title">General News</h4>
-<ul>
-    {{macro.displayNewarticleList(general)}}
-</ul>
-</div>
+<body>
 
-<div>
-    <h4 class="source_title">Business News</h4>
-    <ul>
-        {{macro.displayNewarticleList(business)}}
-    </ul>
-    </div>
-
-<div>
-<h4 class="source_title">Technology News</h4>
-<ul>
-    {{macro.displayNewarticleList(technology)}}
-</ul>
-</div>
-
-<div>
-    <h4 class="source_title">Sports News</h4>
-    <ul>
-        {{macro.displayNewarticleList(sports)}}
-    </ul>
-    </div>
-
-    <div>
-        <h4 class="source_title">Entertainment News</h4>
-        <ul>
-            {{macro.displayNewarticleList(entertainment)}}
-        </ul>
-        </div>
-        
-        <div>
-            <h4 class="source_title">Science News</h4>
-            <ul>
-                {{macro.displayNewarticleList(science)}}
-            </ul>
+        <center><h1> Welcome to the Home of the best news stories </h1></center>
+        <center><p id ="fadeIn"><span class="first"><h2>YOUR ONE STOP TO</span> <br> <strong> ALL NEWS SOURCES</h2></strong></p></center>
+        <hr>
+            {%for source in sources%}
+            <div class="container"">
+                <div>
+                    <table style = "width:100%">
+                        
+                        <tr>
+                            <td>
+                                <strong>&nbsp;&nbsp;{{source.name}}</strong><br><br>
+                                <em>&nbsp;&nbsp;{{source.description}}</em><br><br>
+                                <strong>&nbsp;&nbsp;<a href="/article/{{source.id}}"class="btn btn-info btn-md">View Article</a></strong><br><br><hr>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
-{% endblock %}
+            
+        </body>      
 
+             {%endfor%}
+             <style>
+              body{
+              background: url(static/photos/backgroundnews.jpg);
+              background-position: 0 0;
+              background-attachment: fixed;
+              background-size: cover;
+              font-family: 'Sansita';font-size: 22px;
+             }
+             </style>
+    {% endblock %}

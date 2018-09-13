@@ -6,8 +6,11 @@ class Config:
     General configuration parent class
     '''
 
-    ARTICLE_API_BASE_URL = 'https://newsapi.org/v2/sources?language=en&category={}&apiKey={}'
-    SOURCES_API_BASE_URL = 'https://newsapi.org/v2/top-headlines?country=us{}&apiKey={}'
+    SOURCES_API_BASE_URL = 'https://newsapi.org/v2/sources?&apiKey={}'
+    ARTICLE_API_BASE_URL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey={}'
+    SECRET_KEY = os.environ.get ( 'SECRET_KEY' )
+    SOURCE_API_KEY =os.environ.get('SOURCE_API_KEY')
+    # SOURCES_API_BASE_URL = 'https://newsapi.org/v2/top-headlines?country=us{}&apiKey={}'
 
 class ProdConfig(Config):
 

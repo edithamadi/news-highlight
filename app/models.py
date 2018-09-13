@@ -1,4 +1,4 @@
-class Article:
+class Source:
     '''
     Article class to define News Source Objects
     '''
@@ -11,11 +11,12 @@ class Article:
         self.country =country
 
 
-class Source:
+class Article:
     '''
     Source class to define News Articles Objects
     '''
-    def __init__(self,author,title,description,url,urlToImage,publishedAt):
+    def __init__(self,name,author,title,description,url,urlToImage,publishedAt):
+        self.name = name
         self.author = author
         self.title = title
         self.description = description
